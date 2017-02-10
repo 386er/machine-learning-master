@@ -186,6 +186,11 @@ class Environment(object):
         print "\-------------------"
         print ""
 
+
+        #print self.primary_agent.inputs
+        #print self.primary_agent.Q
+
+
         if(self.verbose == True): # Debugging
             print "Environment.step(): t = {}".format(self.t)
 
