@@ -49,18 +49,16 @@ class LearningAgent(Agent):
         # Update additional class parameters as needed
         # If 'testing' is True, set epsilon and alpha to 0
 
-        
-        self.epsilon = self.epsilon - 0.05
-        #self.epsilon = float(1)/math.exp(float(self.a*self.t))
 
-
+        #self.epsilon = self.epsilon - 0.05
+        self.epsilon = float(1)/math.exp(float(self.a*self.t))
 
         if testing == True:
             self.epsilon = 0
             self.alpha = 0
 
-
         return None
+
 
     def build_state(self):
         """ The build_state function is called when the agent requests data from the 
@@ -105,7 +103,6 @@ class LearningAgent(Agent):
         # When learning, check if the 'state' is not in the Q-table
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
-
 
         if self.learning is True:
             if state not in self.Q.keys():
@@ -199,7 +196,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning = True, epsilon=1, alpha=0.5)
+    agent = env.create_agent(LearningAgent, learning = True, epsilon=1, alpha=0.33)
     
     ##############
     # Follow the driving agent
@@ -214,7 +211,7 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.001, log_metrics=True, display=True, optimized=False)
+    sim = Simulator(env, update_delay=0.001, log_metrics=True, display=True, optimized=True)
     
     ##############
     # Run the simulator
